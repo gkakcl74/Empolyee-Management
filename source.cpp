@@ -1,5 +1,5 @@
 
-/* 2021-12-11 , Á¦´ë·Î ½ÇÇàµÇ´Â°Å È®ÀÎÇß½À´Ï´Ù. ÄÚµùÀÌ ºñÈ¿À²ÀûÀÌ¶ó Ã¹ ·Îµù¿¡ »ìÂ¦ ½Ã°£ÀÌ °É¸³´Ï´Ù.*/
+/* 2021-12-14 , ì œëŒ€ë¡œ ì‹¤í–‰ë˜ëŠ”ê±° í™•ì¸í–ˆìŠµë‹ˆë‹¤. ì½”ë”©ì´ ë¹„íš¨ìœ¨ì ì´ë¼ ì²« ë¡œë”©ì— ì‚´ì§ ì‹œê°„ì´ ê±¸ë¦½ë‹ˆë‹¤.*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -11,18 +11,18 @@ typedef struct sawon {
 	int staff_no = 0;
 	char name[10];
 	char dep[20];
-    int pfc1=0;
-    int pfc2=0;
-    int pfc3=0;
-    int pfc4=0;
-    int tot=0;
+    int pfc1;
+    int pfc2;
+    int pfc3;
+    int pfc4;
+    int tot = 0;
     int rank;
 }sawon;
 sawon saw[200], sil[200], temp;
 
 void menu();
 
-void rank() { // ¼øÀ§
+void rank() { // ìˆœìœ„
     for (int i = 0; i < count; i++) {
         saw[i].rank = 1;
         for (int j = 0; j < count; j++) {
@@ -33,7 +33,7 @@ void rank() { // ¼øÀ§
     }
 }
 
-void no_sort() { // »ç¹øÁ¤·Ä
+void no_sort() { // ì‚¬ë²ˆì •ë ¬
     for (int i = 0; i < count; i++) {
         for (int j = i+1; j < count; j++) {
             if (saw[i].staff_no > saw[j].staff_no) {
@@ -53,7 +53,7 @@ void line(int cnt, char a) {
 }
 
 ///**************************************
-//*              »ç¿øµî·Ï               *
+//*              ì‚¬ì›ë“±ë¡               *
 //**************************************/
 
 void member_input(){
@@ -61,11 +61,11 @@ void member_input(){
     
     while (1){
         system("cls");
-        printf("\t»ç¿øµî·Ï\n\n");
-        printf("\t%d¹øÂ° »ç¿øÀÔ´Ï´Ù\n\n.", count + 1);
+        printf("\tì‚¬ì›ë“±ë¡\n\n");
+        printf("\t%dë²ˆì§¸ ì‚¬ì›ì…ë‹ˆë‹¤\n\n.", count + 1);
 
         check = 0;
-        printf("\t»ç¿ø¹øÈ£: ");
+        printf("\tì‚¬ì›ë²ˆí˜¸: ");
         scanf("%d", &saw[count].staff_no);
 
         while (check < count) {
@@ -77,9 +77,9 @@ void member_input(){
             check++;
         }
         if (cnt != 0) {
-            printf("\n\tÀÌ¹Ì µî·ÏµÈ »ç¹øÀÔ´Ï´Ù.\n\n");
+            printf("\n\tì´ë¯¸ ë“±ë¡ëœ ì‚¬ë²ˆì…ë‹ˆë‹¤.\n\n");
             cnt = 0;
-            printf("\t°è¼ÓÇÏ½Ã°Ú½À´Ï±î?(0: Á¾·á)");
+            printf("\tê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(0: ì¢…ë£Œ)");
             scanf("%d", &key);
 
             if (key == 0) {
@@ -90,13 +90,13 @@ void member_input(){
             continue;
         }
 
-        printf("\t¼º¸í: ");
+        printf("\tì„±ëª…: ");
         scanf("%s", &saw[count].name);
-        printf("\tºÎ¼­¸í: ");
+        printf("\të¶€ì„œëª…: ");
         scanf("%s", &saw[count].dep);
         count++;
 
-        printf("\n\n\t°è¼ÓÇÏ½Ã°Ú½À´Ï±î?(0: Á¾·á)");
+        printf("\n\n\tê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(0: ì¢…ë£Œ)");
         scanf("%d", &key);
 
         if (key == 0) {
@@ -108,7 +108,7 @@ void member_input(){
 }
 
 ///**************************************
-//*              ÀüÃ¼Á¶È¸               *
+//*              ì „ì²´ì¡°íšŒ               *
 //**************************************/
 
 
@@ -119,12 +119,12 @@ void search_all() {
     no_sort();
 
     if (count == 0) {
-        printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n\n");
+        printf("\të°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n\n");
         system("pause");
         return;
     }
     line(80, '=');
-    printf("»ç¹ø\t¼º¸í\tºÎ¼­\t1ºĞ±â\t2ºĞ±â\t3ºĞ±â\t4ºĞ±â\tÇÕ°è\t¼øÀ§\n");
+    printf("ì‚¬ë²ˆ\tì„±ëª…\të¶€ì„œ\t1ë¶„ê¸°\t2ë¶„ê¸°\t3ë¶„ê¸°\t4ë¶„ê¸°\tí•©ê³„\tìˆœìœ„\n");
     line(80, '-');
 
     for (i = 0; i < count; i++) {
@@ -134,7 +134,7 @@ void search_all() {
     for (i = 0; i < count; i++) {
         
         if (saw[i].tot == 0) {
-            printf("%2d\t%s\t%s\t*****½Ç Àû ¾ø À½", saw[i].staff_no, saw[i].name, saw[i].dep);
+            printf("%2d\t%s\t%s\t*****ì‹¤ ì  ì—† ìŒ", saw[i].staff_no, saw[i].name, saw[i].dep);
             printf("\n");
         }
         else {
@@ -153,13 +153,13 @@ void search_all() {
 
     line(80, '-');
     printf("\n");
-    printf("ºĞ±âÇÕ°è\t\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
+    printf("ë¶„ê¸°í•©ê³„\t\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
     printf("\n");
     line(80, '-');
     printf("\n");
 
     key:;
-    printf("¼øÀ§¼ÒÆ®:1, Á¾·á:0...[ ]\b\b");
+    printf("ìˆœìœ„ì†ŒíŠ¸:1, ì¢…ë£Œ:0...[ ]\b\b");
     scanf("%d", &key);
 
     if (key == 1) {
@@ -176,12 +176,12 @@ void search_all() {
         }
         printf("\n\n");
         line(80, '=');
-        printf("»ç¹ø\t¼º¸í\tºÎ¼­\t1ºĞ±â\t2ºĞ±â\t3ºĞ±â\t4ºĞ±â\tÇÕ°è\t¼øÀ§\n");
+        printf("ì‚¬ë²ˆ\tì„±ëª…\të¶€ì„œ\t1ë¶„ê¸°\t2ë¶„ê¸°\t3ë¶„ê¸°\t4ë¶„ê¸°\tí•©ê³„\tìˆœìœ„\n");
         line(80, '-');
         printf("\n");
         for (i = 0; i < count; i++) {
             if (saw[i].tot == 0) {
-                printf("%2d\t%s\t%s\t*****½Ç Àû ¾ø À½", saw[i].staff_no, saw[i].name, saw[i].dep);
+                printf("%2d\t%s\t%s\t*****ì‹¤ ì  ì—† ìŒ", saw[i].staff_no, saw[i].name, saw[i].dep);
                 printf("\n");
             }
             else {
@@ -192,7 +192,7 @@ void search_all() {
         }
         line(80, '-');
         printf("\n");
-        printf("ºĞ±âÇÕ°è\t\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
+        printf("ë¶„ê¸°í•©ê³„\t\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
         printf("\n");
         line(80, '-');
         printf("\n");
@@ -202,13 +202,13 @@ void search_all() {
         return;
     }
     else {
-        printf("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä  ");
+        printf("\të‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”  ");
         goto key;
     }
 }
 
 ///**************************************
-//*              ½ÇÀûÀÔ·Â               *
+//*              ì‹¤ì ì…ë ¥               *
 //**************************************/
 
 void performance_input() {
@@ -217,34 +217,39 @@ void performance_input() {
 first:;
     while (1) {
         system("cls");
-        printf("\t½ÇÀûµî·Ï\n\n");
+        printf("\tì‹¤ì ë“±ë¡\n\n");
         
         while (1) {
-            printf("\t»ç¿ø¹øÈ£: ");
+            printf("\tì‚¬ì›ë²ˆí˜¸: ");
             scanf("%d", &no_key);
 
             for (i = 0; i < count; i++) {
+                if (saw[i].staff_no == no_key && saw[i].tot != 0) {
+                    printf("ì´ë¯¸ ì‹¤ì ì´ ë“±ë¡ëœ ì‚¬ì› ì…ë‹ˆë‹¤.\n\n");
+                    goto how;
+                }
+
                 if (saw[i].staff_no == no_key) {
                     cnt++;
-                    printf("\n\t¼º¸í: %s\tºÎ¼­: %s\n\n", saw[i].name, saw[i].dep);
+                    printf("\n\tì„±ëª…: %s\të¶€ì„œ: %s\n\n", saw[i].name, saw[i].dep);
                     break;
                 }
             }
             if (cnt != 0) {
-                printf("\t1ºĞ±â: ");
+                printf("\t1ë¶„ê¸°: ");
                 scanf("%d", &saw[i].pfc1);
-                printf("\t2ºĞ±â: ");
+                printf("\t2ë¶„ê¸°: ");
                 scanf("%d", &saw[i].pfc2);
-                printf("\t3ºĞ±â: ");
+                printf("\t3ë¶„ê¸°: ");
                 scanf("%d", &saw[i].pfc3);
-                printf("\t4ºĞ±â: ");
+                printf("\t4ë¶„ê¸°: ");
                 scanf("%d", &saw[i].pfc4);
                 saw[i].tot = saw[i].pfc1 + saw[i].pfc2 + saw[i].pfc3 + saw[i].pfc4;
                 break;
             }
             else {
-                printf("\n\t%d ´Â µî·ÏµÇÁö ¾ÊÀº »ç¿ø¹øÈ£ ÀÔ´Ï´Ù.\n\n", no_key);
-                printf("\t°è¼ÓÇÏ½Ã°Ú½À´Ï±î?(0: Á¾·á)...[ ]\b\b");
+                printf("\n\t%d ëŠ” ë“±ë¡ë˜ì§€ ì•Šì€ ì‚¬ì›ë²ˆí˜¸ ì…ë‹ˆë‹¤.\n\n", no_key);
+                printf("\tê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(0: ì¢…ë£Œ)...[ ]\b\b");
                 scanf("%d", &key);
 
                 if (key == 0) {
@@ -255,7 +260,8 @@ first:;
             }
         }
 
-        printf("°è¼ÓÇÏ½Ã°Ú½À´Ï±î?(0: Á¾·á)");
+    how:;
+        printf("\tê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(0: ì¢…ë£Œ)");
         scanf("%d", &key);
 
         if (key == 0) {
@@ -267,7 +273,7 @@ first:;
 }
 
 ///**************************************
-//*              ºÎ¼­Á¶È¸               *
+//*              ë¶€ì„œì¡°íšŒ               *
 //**************************************/
 
 void search_department() {
@@ -278,13 +284,15 @@ void search_department() {
     rank();
     no_sort();
 
-    printf("\tºÎ¼­Á¶È¸\n\n");
+    printf("\të¶€ì„œì¡°íšŒ\n\n");
 
     while (1) {
-        printf("\tºÎ¼­¸í: ");
+        system("cls");
+
+        printf("\të¶€ì„œëª…: ");
         scanf("%s", dp_key);
         line(80, '=');
-        printf("»ç¹ø\t¼º¸í\t1ºĞ±â\t2ºĞ±â\t3ºĞ±â\t4ºĞ±â\tÇÕ°è\t¼øÀ§\n");
+        printf("ì‚¬ë²ˆ\tì„±ëª…\t1ë¶„ê¸°\t2ë¶„ê¸°\t3ë¶„ê¸°\t4ë¶„ê¸°\tí•©ê³„\tìˆœìœ„\n");
         line(80, '-');
         printf("\n");
         
@@ -308,7 +316,7 @@ void search_department() {
                 cnt++;
 
                 if (saw[i].tot == 0) {
-                    printf("%2d\t%s\t*****½Ç Àû ¾ø À½", saw[i].staff_no, saw[i].name);
+                    printf("%2d\t%s\t*****ì‹¤ ì  ì—† ìŒ", saw[i].staff_no, saw[i].name);
                     printf("\n");
                 }
                 else {
@@ -327,14 +335,14 @@ void search_department() {
 
         line(80, '-');
         printf("\n");
-        printf("ºĞ±âÇÕ°è\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
+        printf("ë¶„ê¸°í•©ê³„\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
         printf("\n");
         line(80, '-');
         printf("\n");
 
         if(cnt == 0) {
-            printf("%s ºÎ¼­¿¡ ¼ÓÇÑ »ç¿øÀº Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n\n", dp_key);
-            printf("°è¼ÓÇÏ½Ã°Ú½À´Ï±î?(0: Á¾·á)");
+            printf("\t%s ë¶€ì„œì— ì†í•œ ì‚¬ì›ì€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\n", dp_key);
+            printf("\tê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(0: ì¢…ë£Œ)");
             scanf("%d", &key);
 
             if (key == 0) {
@@ -349,7 +357,7 @@ void search_department() {
     printf("\n");
 
     key:;
-    printf("¼øÀ§¼ÒÆ®:1, Á¾·á:0...[ ]\b\b");
+    printf("ìˆœìœ„ì†ŒíŠ¸:1, ì¢…ë£Œ:0...[ ]\b\b");
     scanf("%d", &key);
 
     if (key == 1) {
@@ -366,7 +374,7 @@ void search_department() {
         }
         printf("\n\n");
         line(80, '=');
-        printf("»ç¹ø\t¼º¸í\t1ºĞ±â\t2ºĞ±â\t3ºĞ±â\t4ºĞ±â\tÇÕ°è\t¼øÀ§\n");
+        printf("ì‚¬ë²ˆ\tì„±ëª…\t1ë¶„ê¸°\t2ë¶„ê¸°\t3ë¶„ê¸°\t4ë¶„ê¸°\tí•©ê³„\tìˆœìœ„\n");
         line(80, '-');
         printf("\n");
         for (i = 0; i < count; i++) {
@@ -376,7 +384,7 @@ void search_department() {
 
 
                 if (saw[i].tot == 0) {
-                    printf("%2d\t%s\t*****½Ç Àû ¾ø À½", saw[i].staff_no, saw[i].name);
+                    printf("%2d\t%s\t*****ì‹¤ ì  ì—† ìŒ", saw[i].staff_no, saw[i].name);
                     printf("\n");
                 }
                 else {
@@ -388,7 +396,7 @@ void search_department() {
         }
         line(80, '-');
         printf("\n");
-        printf("ºĞ±âÇÕ°è\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
+        printf("ë¶„ê¸°í•©ê³„\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
         printf("\n");
         line(80, '-');
         printf("\n");
@@ -404,7 +412,7 @@ void search_department() {
 }
 
 ///**************************************
-//*              °³ÀÎ°Ë»ö               *
+//*              ê°œì¸ê²€ìƒ‰               *
 //**************************************/
 
 void search_oneman(){
@@ -415,16 +423,22 @@ void search_oneman(){
     rank();
     no_sort();
 
-    printf("\t°³ÀÎÁ¶È¸\n\n");
+    printf("\tê°œì¸ì¡°íšŒ\n\n");
 
     while (1) {
-        printf("\t¼º¸í: ");
+        printf("\tì„±ëª…: ");
         scanf("%s", name_key);
 
         line(80, '=');
-        printf("»ç¹ø\tºÎ¼­\t1ºĞ±â\t2ºĞ±â\t3ºĞ±â\t4ºĞ±â\tÇÕ°è\t¼øÀ§\n");
+        printf("ì‚¬ë²ˆ\të¶€ì„œ\t1ë¶„ê¸°\t2ë¶„ê¸°\t3ë¶„ê¸°\t4ë¶„ê¸°\tí•©ê³„\tìˆœìœ„\n");
         line(80, '-');
         printf("\n");
+
+        for (i = 0; i < count; i++) {
+            if (strcmp(saw[i].name, name_key) == 0) {
+                saw[i].tot = saw[i].pfc1 + saw[i].pfc2 + saw[i].pfc3 + saw[i].pfc4;
+            }
+        }
 
         for (i = 0; i < count; i++) {
             saw[i].rank = 1;
@@ -441,7 +455,7 @@ void search_oneman(){
                 saw[i].tot = saw[i].pfc1 + saw[i].pfc2 + saw[i].pfc3 + saw[i].pfc4;
 
                 if (saw[i].tot == 0) {
-                    printf("%2d\t%s\t*****½Ç Àû ¾ø À½", saw[i].staff_no, saw[i].dep);
+                    printf("%2d\t%s\t*****ì‹¤ ì  ì—† ìŒ", saw[i].staff_no, saw[i].dep);
                     printf("\n");
                 }
                 else {
@@ -459,8 +473,8 @@ void search_oneman(){
         totking = tot1 + tot2 + tot3 + tot4;
 
         if (cnt == 0) {
-            printf("%s ¶õ ÀÌ¸§ÀÇ »ç¿øÀº Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n\n", name_key);
-            printf("°è¼ÓÇÏ½Ã°Ú½À´Ï±î?(0: Á¾·á)");
+            printf("\t%s ë€ ì´ë¦„ì˜ ì‚¬ì›ì€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\n", name_key);
+            printf("\tê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(0: ì¢…ë£Œ)");
             scanf("%d", &key);
 
             if (key == 0) {
@@ -474,12 +488,12 @@ void search_oneman(){
 
     line(80, '-');
     printf("\n");
-    printf("ºĞ±âÇÕ°è\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
+    printf("ë¶„ê¸°í•©ê³„\t%2d\t%2d\t%2d\t%2d\t%2d", tot1, tot2, tot3, tot4, totking);
     printf("\n");
     line(80, '-');
     printf("\n");
 
-    printf("°è¼ÓÇÏ½Ã°Ú½À´Ï±î?(0: Á¾·á)");
+    printf("\tê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(0: ì¢…ë£Œ)");
     scanf("%d", &key);
 
     if (key == 0) {
@@ -501,34 +515,34 @@ void menu() {
 
         system("cls");
         printf("\n\n");
-        printf("\t 1. »ç¿øµî·Ï\n\n");
-        printf("\t 2. ½ÇÀûµî·Ï\n\n");
-        printf("\t 3. ÀüÃ¼Á¶È¸\n\n");
-        printf("\t 4. ºÎ¼­Á¶È¸\n\n");
-        printf("\t 5. °³ÀÎÁ¶È¸\n\n\n");
-        printf("\t0. Á¾·á");
+        printf("\t 1. ì‚¬ì›ë“±ë¡\n\n");
+        printf("\t 2. ì‹¤ì ë“±ë¡\n\n");
+        printf("\t 3. ì „ì²´ì¡°íšŒ\n\n");
+        printf("\t 4. ë¶€ì„œì¡°íšŒ\n\n");
+        printf("\t 5. ê°œì¸ì¡°íšŒ\n\n\n");
+        printf("\t0. ì¢…ë£Œ");
         printf("\t    .........[ ]\b\b");
         scanf("%d", &sel);
 
         if (sel == 0) break;
         switch (sel)
         {
-        case 0: printf("\n\n Á¾·á\n");
+        case 0: printf("\n\n ì¢…ë£Œ\n");
             exit;
             
-        case 1: printf("\n\n »ç¿øµî·Ï.\n");
+        case 1: printf("\n\n ì‚¬ì›ë“±ë¡.\n");
             member_input();
             break;
-        case 2: printf("\n\n ½ÇÀûµî·Ï\n");
+        case 2: printf("\n\n ì‹¤ì ë“±ë¡\n");
             performance_input();
             break;
-        case 3: printf("\n\n ÀüÃ¼Á¶È¸\n");
+        case 3: printf("\n\n ì „ì²´ì¡°íšŒ\n");
             search_all();
             break;
-        case 4: printf("\n\n ºÎ¼­Á¶È¸\n");
+        case 4: printf("\n\n ë¶€ì„œì¡°íšŒ\n");
             search_department();
             break;
-        case 5: printf("\n\n °³ÀÎÁ¶È¸\n");
+        case 5: printf("\n\n ê°œì¸ì¡°íšŒ\n");
             search_oneman();
             break;
         }
@@ -538,7 +552,7 @@ void menu() {
 }
 int main() {
 
-    // À§¿¡´Ù ¿Ã¸®¸é µ¥ÀÌÅÍ¸¦ °è¼Ó Ãß°¡ÇØÁö±â ¶§¹®¿¡ ÄÑÁö¸é¼­ ¹Ù·Î µ¥ÀÌÅÍ¸¦ Ãß°¡
+    // ìœ„ì—ë‹¤ ì˜¬ë¦¬ë©´ ë°ì´í„°ë¥¼ ê³„ì† ì¶”ê°€í•´ì§€ê¸° ë•Œë¬¸ì— ì¼œì§€ë©´ì„œ ë°”ë¡œ ë°ì´í„°ë¥¼ ì¶”ê°€
     int i, j, cnt=0;
     FILE* sawonF = fopen("c:\\data\\sawon.txt", "r");
     FILE* siljukF = fopen("c:\\data\\siljuk.txt", "r");
@@ -563,6 +577,7 @@ int main() {
                 saw[i].pfc2 = sil[j].pfc2;
                 saw[i].pfc3 = sil[j].pfc3;
                 saw[i].pfc4 = sil[j].pfc4;
+                saw[i].tot = saw[j].pfc1 + saw[j].pfc2 + saw[j].pfc3 + saw[j].pfc4;
                 break;
             }
         }
